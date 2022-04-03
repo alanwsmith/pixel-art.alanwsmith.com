@@ -19,7 +19,7 @@ def make_table_from_image(path, width):
     for pixel_row in pixel_rows: 
         new_row = []
         for pixel in pixel_row:
-            hex_string = ''.join([hex(value)[2:] for value in pixel])
+            hex_string = ''.join([hex(value)[2:].zfill(2) for value in pixel])
             new_row.append(f'#{hex_string}')
         color_rows.append(new_row)
     print(color_rows)
