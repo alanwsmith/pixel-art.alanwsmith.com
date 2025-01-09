@@ -16,12 +16,10 @@ for reference.
 
 Generation
 
-
-
-
--- olist
-
-1. Create a python3 vir
+The script that generates the pages is written
+in python 3. I use a >>virtual environment|
+https://docs.python.org/3/library/venv.html>>
+for it. 
 
 
 

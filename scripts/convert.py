@@ -22,7 +22,8 @@ def make_table_from_image(path, width):
             hex_string = ''.join([hex(value)[2:].zfill(2) for value in pixel])
             new_row.append(f'#{hex_string}')
         color_rows.append(new_row)
-    print(color_rows)
+
+    print(len(color_rows))
 
     with open('index.html', 'w') as _f:
         _f.write('<table>')
@@ -38,7 +39,7 @@ def make_table_from_image(path, width):
 if __name__ == '__main__':
 
     make_table_from_image(
-        '/Users/alan/Graphics/magritte-son-of-man-1964.jpg',
+        '/Users/alan/Graphics/misc/magritte-son-of-man-1964.jpg',
         100
     )
 
