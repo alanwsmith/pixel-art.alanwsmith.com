@@ -12,13 +12,11 @@ def get_image_path(path):
 
 def make_table_from_image(path, width):
     color_rows = []
-    column_count = 0
     image = Image.open(path)
     initial_width, initial_height = image.size
     ratio = initial_height / initial_width
     height = int(width * ratio)
     image = image.resize((width, height))
-
     pixels = list(image.getdata())
     pixel_rows = [pixels[i * width:(i + 1) * width] for i in range(height)]
 
@@ -39,15 +37,15 @@ def make_table_from_image(path, width):
             _f.write("\n")
         _f.write('</table>')
 
-    return [len(color_rows), column_count]
+    return [width, len(color_rows)]
 
 if __name__ == '__main__':
     output_width = 100
     current_dir = get_current_dir()
     image_path = get_image_path(f"{current_dir}/source-path.txt")
     details = make_table_from_image(image_path, output_width)
-    print(details)
-
-
+    print(f"Width: {details[0]}")
+    print(f"Height: {details[1]}")
+    print(f"Total Cells: {details[0] * details[1]}")
 
 
