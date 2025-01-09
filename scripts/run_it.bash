@@ -7,14 +7,14 @@ SOURCE_PATH="/Users/alan/Graphics/misc/magritte-son-of-man-1964.jpg"
 
 # The process
 
-printf "%s" $SOURCE_PATH > source-path.txt
+printf "%s" $SOURCE_PATH > "table_maker/source-path.txt"
 python3 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
 pip install pillow
-python convert.py
+python table_maker/make_table.py
 deactivate
-#rm -rf vev
+rm -rf venv
 
 
 

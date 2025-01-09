@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 
+import os
 from PIL import Image
 
+def get_current_dir():
+    return os.path.dirname(os.path.realpath(__file__))
+
+def get_image_path(path):
+  with open(path) as _in:
+    return(_in.readline().strip())
 
 def make_table_from_image(path, width):
-
+    color_rows = []
+    column_count = 0
     image = Image.open(path)
     initial_width, initial_height = image.size
     ratio = initial_height / initial_width
@@ -14,8 +22,6 @@ def make_table_from_image(path, width):
     pixels = list(image.getdata())
     pixel_rows = [pixels[i * width:(i + 1) * width] for i in range(height)]
 
-    color_rows = []
-
     for pixel_row in pixel_rows: 
         new_row = []
         for pixel in pixel_row:
@@ -23,9 +29,7 @@ def make_table_from_image(path, width):
             new_row.append(f'#{hex_string}')
         color_rows.append(new_row)
 
-    print(len(color_rows))
-
-    with open('index.html', 'w') as _f:
+    with open('table.html', 'w') as _f:
         _f.write('<table>')
         for color_row in color_rows:
             _f.write('<tr>')
@@ -35,13 +39,15 @@ def make_table_from_image(path, width):
             _f.write("\n")
         _f.write('</table>')
 
+    return [len(color_rows), column_count]
 
 if __name__ == '__main__':
+    output_width = 100
+    current_dir = get_current_dir()
+    image_path = get_image_path(f"{current_dir}/source-path.txt")
+    details = make_table_from_image(image_path, output_width)
+    print(details)
 
-    make_table_from_image(
-        '/Users/alan/Graphics/misc/magritte-son-of-man-1964.jpg',
-        100
-    )
 
 
 
