@@ -35,7 +35,7 @@ def make_table_from_image(path, width, pixel_size, size_test):
 	<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
-<body>
+<body bgcolor="#000000">
 	<main>
 		<center>
                      """)
@@ -61,7 +61,7 @@ def make_table_from_image(path, width, pixel_size, size_test):
 if __name__ == '__main__':
     size_test = True 
     pixel_size = 1
-    output_width = 300
+    output_width = 2000
     current_dir = get_current_dir()
     image_path = get_image_path(f"{current_dir}/source-path.txt")
     details = make_table_from_image(image_path, output_width, pixel_size, size_test)
