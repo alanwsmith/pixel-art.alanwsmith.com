@@ -60,8 +60,8 @@ def make_table_from_image(path, width, pixel_size, size_test):
 
 if __name__ == '__main__':
     size_test = True 
-    pixel_size = 3
-    output_width = 200
+    pixel_size = 1
+    output_width = 300
     current_dir = get_current_dir()
     image_path = get_image_path(f"{current_dir}/source-path.txt")
     details = make_table_from_image(image_path, output_width, pixel_size, size_test)
