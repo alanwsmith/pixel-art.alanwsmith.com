@@ -10,7 +10,7 @@ def get_image_path(path):
   with open(path) as _in:
     return(_in.readline().strip())
 
-def make_table_from_image(path, width):
+def make_table_from_image(path, width, pixel_size, size_test):
     color_rows = []
     image = Image.open(path)
     initial_width, initial_height = image.size
@@ -28,22 +28,43 @@ def make_table_from_image(path, width):
         color_rows.append(new_row)
 
     with open('table.html', 'w') as _f:
+        if size_test == True:
+            _f.write("""<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body bgcolor="#000000">
+	<main>
+		<center>
+                     """)
+
         _f.write('<table>')
         for color_row in color_rows:
             _f.write('<tr>')
             for color_cell in color_row:
-                _f.write(f'<td width="6" height="6" bgcolor="{color_cell}"></td>')
+                _f.write(f'<td width="{pixel_size}" height="{pixel_size}" bgcolor="{color_cell}"></td>')
             _f.write('</tr>')
             _f.write("\n")
         _f.write('</table>')
 
+        if size_test == True:
+            _f.write("""
+		</center>
+	</main>
+</body>
+</html>""")
+
     return [width, len(color_rows)]
 
 if __name__ == '__main__':
-    output_width = 100
+    size_test = True 
+    pixel_size = 1
+    output_width = 2000
     current_dir = get_current_dir()
     image_path = get_image_path(f"{current_dir}/source-path.txt")
-    details = make_table_from_image(image_path, output_width)
+    details = make_table_from_image(image_path, output_width, pixel_size, size_test)
     print(f"Width: {details[0]}")
     print(f"Height: {details[1]}")
     print(f"Total Cells: {details[0] * details[1]}")
